@@ -1,12 +1,29 @@
 package com.projeto.barbearia.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.projeto.barbearia.service.Relatorio.RelatorioService;
+import com.projeto.barbearia.service.Relatorio.dto.DadosRelatorioFuncionario;
+import com.projeto.barbearia.service.Relatorio.dto.DadosRelatorioTodosFuncionarios;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/relatorio")
 public class RelatorioController {
+
+    @Autowired
+    private RelatorioService service;
+
+    @GetMapping("/funcionario")
+    public ResponseEntity retornoFuncionario(@RequestBody DadosRelatorioFuncionario dados){
+        return ResponseEntity.ok().body(service.RelatorioFuncionario(dados));
+    }
+    @GetMapping("/funcionarios")
+    public ResponseEntity retornoTodosFuncionarios(@RequestBody @Valid DadosRelatorioTodosFuncionarios dados){
+        return ResponseEntity.ok().body(service.RelatorioTodosOsFuncionarios(dados));
+    }
 
 
 

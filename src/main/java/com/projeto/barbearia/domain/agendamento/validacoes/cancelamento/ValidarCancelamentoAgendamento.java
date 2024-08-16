@@ -15,11 +15,11 @@ public class ValidarCancelamentoAgendamento implements ValidarCancelamento{
     private AgendamentoRepository agendamentoRepository;
     @Override
     public void validar(DadosCancelarAgendamento dados) {
-        LocalDateTime dataCancelamento= LocalDateTime.parse("2024-09-06T13:00:00");
+        LocalDateTime dataCancelamento= LocalDateTime.now();
         var agendamento= agendamentoRepository.getReferenceById(dados.idAgendamento());
         var horarioMinimo= Duration.between(dataCancelamento,agendamento.getData()).toMinutes();
         if(horarioMinimo<30){
-            throw new ValidacaoExpection("O agendamento só pode ser cancelado com horario mínimo de 30 minutos");
+            throw new ValidacaoExpection("O agendamento só pode ser cancelado com  30 minutos de antencedencia");
         }
     }
 }

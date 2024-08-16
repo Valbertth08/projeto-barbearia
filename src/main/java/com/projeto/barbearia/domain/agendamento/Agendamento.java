@@ -1,5 +1,6 @@
 package com.projeto.barbearia.domain.agendamento;
 
+import com.projeto.barbearia.domain.agendamento.enums.StatusAgendamento;
 import com.projeto.barbearia.domain.cliente.Cliente;
 import com.projeto.barbearia.domain.funcionario.Funcionario;
 import com.projeto.barbearia.domain.pagamento.Pagamento;
@@ -36,6 +37,9 @@ public class Agendamento {
     @OneToOne(mappedBy = "agendamento",cascade = CascadeType.ALL,orphanRemoval = true)
     private Pagamento pagamento;
 
+    @Enumerated(EnumType.STRING)
+    private StatusAgendamento status;
+
     private LocalDateTime data;
 
     public Agendamento(Cliente cliente, Funcionario funcionario, Servico servico, LocalDateTime data) {
@@ -43,6 +47,7 @@ public class Agendamento {
         this.funcionario=funcionario;
         this.servico=servico;
         this.data=data;
+        this.status=StatusAgendamento.PENDENTE;
     }
 
 }
