@@ -4,11 +4,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.projeto.barbearia.domain.agendamento.Agendamento;
 import com.projeto.barbearia.domain.endereco.Endereco;
 import com.projeto.barbearia.domain.funcionario.dto.DadosCadastrarFuncionario;
+import com.projeto.barbearia.domain.usuario.Role;
 import com.projeto.barbearia.domain.usuario.Usuario;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,11 +28,11 @@ public class Funcionario extends Usuario {
     private Especialidade especialidade;
     @Embedded
     private Endereco endereco;
-
+    private static BCryptPasswordEncoder passwordEncoder =new BCryptPasswordEncoder();;
     @OneToMany(mappedBy = "funcionario")
     private List<Agendamento> agendamentos = new ArrayList<>();
     public Funcionario(DadosCadastrarFuncionario dados) {
-        super(dados.login(), dados.senha(), dados.role());
+        super(dados.login(),  passwordEncoder.encode(dados.senha()), Role.FUNC);
         this.nome=dados.nome();
         this.telefone=dados.telefone();
         this.especialidade=dados.especialidade();

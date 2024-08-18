@@ -4,6 +4,7 @@ import com.projeto.barbearia.domain.funcionario.dto.DadosAtualizarFuncionario;
 import com.projeto.barbearia.domain.funcionario.dto.DadosCadastrarFuncionario;
 import com.projeto.barbearia.domain.funcionario.dto.DadosListagemFuncionario;
 import com.projeto.barbearia.service.FuncionarioService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/funcionario")
+@SecurityRequirement(name = "bearer-key")
 public class FuncionarioController {
     @Autowired
     private FuncionarioService service;

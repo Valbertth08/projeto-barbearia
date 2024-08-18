@@ -6,6 +6,7 @@ import com.projeto.barbearia.domain.cliente.dto.DadosAtualizarCliente;
 import com.projeto.barbearia.domain.cliente.dto.DadosCadastrarCliente;
 import com.projeto.barbearia.domain.cliente.dto.DadosDetalhamentoCliente;
 import com.projeto.barbearia.domain.cliente.dto.DadosListagemCliente;
+import com.projeto.barbearia.domain.usuario.CriptografarSenha;
 import com.projeto.barbearia.repository.ClienteRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ public class ClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
     public ResponseEntity inserirCliente(DadosCadastrarCliente dados, UriComponentsBuilder builder){
+
         var cliente= clienteRepository.save(new Cliente(dados));
         var uri= builder.path("/cliente/{id}").buildAndExpand(cliente.getId()).toUri();
         return ResponseEntity.created(uri).body(new DadosDetalhamentoCliente(cliente));
@@ -61,4 +63,6 @@ public class ClienteService {
         }
         clienteRepository.deleteById(id);
     }
+
+
 }

@@ -1,4 +1,4 @@
-package com.projeto.barbearia.configuration;
+package com.projeto.barbearia.configuration.profiles;
 
 
 import org.springframework.boot.CommandLineRunner;

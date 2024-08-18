@@ -6,6 +6,7 @@ import com.projeto.barbearia.domain.agendamento.dto.DadosDetalhementoAgendamento
 import com.projeto.barbearia.domain.agendamento.dto.DadosFazerAgendamento;
 import com.projeto.barbearia.domain.endereco.dto.DadosAtualizarEndereco;
 import com.projeto.barbearia.service.AgendamentoService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.hibernate.query.NativeQuery;
@@ -18,6 +19,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/agendamento")
+@SecurityRequirement(name = "bearer-key")
 public class AgendamentoController {
 
     @Autowired

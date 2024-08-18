@@ -1,7 +1,7 @@
 CREATE TABLE tb_usuario (
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
     login varchar(100) unique not null,
-    senha varchar(9) not null,
+    senha varchar(255) not null,
     role varchar(100) not null
 );
 
@@ -42,6 +42,7 @@ CREATE TABLE tb_agendamento (
     id_cliente BIGINT NOT NULL,
     id_servico BIGINT NOT NULL,
     data TIMESTAMP not null,
+     status varchar(25) not null,
     FOREIGN KEY (id_funcionario) REFERENCES tb_funcionario(id),
     FOREIGN KEY (id_cliente) REFERENCES tb_cliente(id),
     FOREIGN KEY (id_servico) REFERENCES tb_servico(id)

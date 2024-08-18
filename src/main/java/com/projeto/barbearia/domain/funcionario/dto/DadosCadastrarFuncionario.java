@@ -12,8 +12,6 @@ public record DadosCadastrarFuncionario(
         String login,
         @NotBlank
         String senha,
-        @NotNull
-        Role role,
         @NotBlank
         String nome,
         @NotBlank

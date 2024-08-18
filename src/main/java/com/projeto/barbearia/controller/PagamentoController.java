@@ -3,6 +3,7 @@ package com.projeto.barbearia.controller;
 import com.projeto.barbearia.domain.pagamento.dto.DadosCadastarPagamento;
 import com.projeto.barbearia.domain.pagamento.dto.DadosDetalhamentoPagamento;
 import com.projeto.barbearia.service.PagamentoService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +15,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/pagamento")
+@SecurityRequirement(name = "bearer-key")
 public class PagamentoController {
-
-
     @Autowired
     private PagamentoService service;
     @PostMapping("/inserir")

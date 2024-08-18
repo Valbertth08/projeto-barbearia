@@ -5,6 +5,7 @@ import com.projeto.barbearia.domain.cliente.dto.DadosAtualizarCliente;
 import com.projeto.barbearia.domain.cliente.dto.DadosCadastrarCliente;
 import com.projeto.barbearia.domain.cliente.dto.DadosListagemCliente;
 import com.projeto.barbearia.service.ClienteService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/cliente")
+@SecurityRequirement(name = "bearer-key")
 public class ClienteController {
     @Autowired
     private ClienteService service;

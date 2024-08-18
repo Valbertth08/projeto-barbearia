@@ -12,8 +12,6 @@ public record DadosCadastrarCliente(
         String login,
         @NotBlank
          String senha,
-        @NotNull
-        Role role,
         @NotBlank
         String telefone,
         @NotBlank

@@ -11,6 +11,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -29,8 +30,9 @@ public class Cliente extends Usuario {
     private Endereco endereco;
     @OneToMany(mappedBy = "cliente")
     private List<Agendamento> agendamentos = new ArrayList<>();
+    private static BCryptPasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
     public Cliente(DadosCadastrarCliente dados){
-        super(dados.login(), dados.senha(), dados.role());
+        super(dados.login(), passwordEncoder.encode(dados.senha()),Role.USER);
         this.nome = dados.nome();
         this.telefone = dados.telefone();
         this.data_aniversario = dados.data_aniversario();
